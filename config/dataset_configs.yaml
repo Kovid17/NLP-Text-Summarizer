@@ -1,0 +1,111 @@
+# ─────────────────────────────────────────────────────────────────
+#  Dataset Configurations  —  NLP Text Summarization Project
+# ─────────────────────────────────────────────────────────────────
+
+# PHASE 1 ── Foundation
+cnn_dailymail:
+  hf_name: "cnn_dailymail"
+  hf_config: "3.0.0"
+  input_col: "article"
+  target_col: "highlights"
+  train_split: "train"
+  val_split: "validation"
+  test_split: "test"
+  train_samples: 10000      # use subset for fast iteration; set null for full
+  val_samples: 500
+  test_samples: 500
+  phase: 1
+  domain: "news"
+  summary_type: "multi-sentence"
+
+samsum:
+  hf_name: "samsum"
+  hf_config: null
+  input_col: "dialogue"
+  target_col: "summary"
+  train_split: "train"
+  val_split: "validation"
+  test_split: "test"
+  train_samples: null       # small dataset (~14K) — use full
+  val_samples: null
+  test_samples: null
+  phase: 1
+  domain: "dialogue"
+  summary_type: "conversation-summary"
+
+# PHASE 2 ── Expansion
+xsum:
+  hf_name: "EdinburghNLP/xsum"
+  hf_config: null
+  input_col: "document"
+  target_col: "summary"
+  train_split: "train"
+  val_split: "validation"
+  test_split: "test"
+  train_samples: 10000
+  val_samples: 500
+  test_samples: 500
+  phase: 2
+  domain: "news-bbc"
+  summary_type: "one-line"
+
+gigaword:
+  hf_name: "gigaword"
+  hf_config: null
+  input_col: "document"
+  target_col: "summary"
+  train_split: "train"
+  val_split: "validation"
+  test_split: "test"
+  train_samples: 20000
+  val_samples: 1000
+  test_samples: 1000
+  phase: 2
+  domain: "news-headlines"
+  summary_type: "headline"
+
+# PHASE 3 ── Advanced
+arxiv:
+  hf_name: "scientific_papers"
+  hf_config: "arxiv"
+  input_col: "article"
+  target_col: "abstract"
+  train_split: "train"
+  val_split: "validation"
+  test_split: "test"
+  train_samples: 5000
+  val_samples: 300
+  test_samples: 300
+  phase: 3
+  domain: "scientific"
+  summary_type: "abstract"
+
+reddit_tifu:
+  hf_name: "reddit_tifu"
+  hf_config: "long"
+  input_col: "documents"
+  target_col: "tldr"
+  train_split: "train"
+  val_split: null           # no predefined val split — use 90/10 manual split
+  test_split: null
+  train_samples: 10000
+  val_samples: 500
+  test_samples: 500
+  phase: 3
+  domain: "social-media"
+  summary_type: "tldr"
+
+aclsum:
+  hf_name: "sobamchan/aclsum"
+  hf_config: null
+  input_col: "text"
+  target_col: "summary"
+  train_split: "train"
+  val_split: "validation"
+  test_split: "test"
+  train_samples: null       # tiny dataset (~200) — use full
+  val_samples: null
+  test_samples: null
+  phase: 3
+  domain: "nlp-research"
+  summary_type: "paper-summary"

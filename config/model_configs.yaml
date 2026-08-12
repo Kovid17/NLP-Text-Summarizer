@@ -1,0 +1,114 @@
+# ─────────────────────────────────────────────────────────────────
+#  Model Configurations  —  NLP Text Summarization Project
+# ─────────────────────────────────────────────────────────────────
+
+# PHASE 1 ── Foundation
+cnn_dailymail:
+  model_name: "facebook/bart-large-cnn"
+  tokenizer_name: "facebook/bart-large-cnn"
+  max_input_length: 1024
+  max_target_length: 128
+  learning_rate: 3.0e-5
+  batch_size: 4
+  num_epochs: 3
+  warmup_steps: 500
+  weight_decay: 0.01
+  num_beams: 4
+  length_penalty: 2.0
+  early_stopping: true
+  fp16: true
+
+samsum:
+  model_name: "philschmid/bart-large-cnn-samsum"
+  tokenizer_name: "philschmid/bart-large-cnn-samsum"
+  max_input_length: 512
+  max_target_length: 128
+  learning_rate: 5.0e-5
+  batch_size: 8
+  num_epochs: 5
+  warmup_steps: 200
+  weight_decay: 0.01
+  num_beams: 4
+  length_penalty: 1.0
+  early_stopping: true
+  fp16: true
+
+# PHASE 2 ── Expansion
+xsum:
+  model_name: "facebook/bart-large-xsum"
+  tokenizer_name: "facebook/bart-large-xsum"
+  max_input_length: 1024
+  max_target_length: 64
+  learning_rate: 3.0e-5
+  batch_size: 4
+  num_epochs: 3
+  warmup_steps: 500
+  weight_decay: 0.01
+  num_beams: 6
+  length_penalty: 1.0
+  early_stopping: true
+  fp16: true
+
+gigaword:
+  model_name: "google/pegasus-gigaword"
+  tokenizer_name: "google/pegasus-gigaword"
+  max_input_length: 128
+  max_target_length: 32
+  learning_rate: 5.0e-5
+  batch_size: 16
+  num_epochs: 5
+  warmup_steps: 300
+  weight_decay: 0.01
+  num_beams: 8
+  length_penalty: 0.8
+  early_stopping: true
+  fp16: true
+
+# PHASE 3 ── Advanced
+arxiv:
+  model_name: "google/pegasus-arxiv"
+  tokenizer_name: "google/pegasus-arxiv"
+  max_input_length: 4096
+  max_target_length: 256
+  learning_rate: 2.0e-5
+  batch_size: 2
+  num_epochs: 3
+  warmup_steps: 800
+  weight_decay: 0.01
+  num_beams: 4
+  length_penalty: 2.0
+  early_stopping: true
+  fp16: true
+  gradient_accumulation_steps: 8
+
+reddit_tifu:
+  model_name: "facebook/bart-large"
+  tokenizer_name: "facebook/bart-large"
+  max_input_length: 512
+  max_target_length: 128
+  learning_rate: 3.0e-5
+  batch_size: 8
+  num_epochs: 3
+  warmup_steps: 400
+  weight_decay: 0.01
+  num_beams: 4
+  length_penalty: 1.5
+  early_stopping: true
+  fp16: true
+
+aclsum:
+  model_name: "allenai/led-base-16384"
+  tokenizer_name: "allenai/led-base-16384"
+  max_input_length: 4096
+  max_target_length: 256
+  learning_rate: 2.0e-5
+  batch_size: 2
+  num_epochs: 3
+  warmup_steps: 600
+  weight_decay: 0.01
+  num_beams: 4
+  length_penalty: 2.0
+  early_stopping: true
+  fp16: true
+  gradient_accumulation_steps: 8
+  global_attention_on_cls: true
